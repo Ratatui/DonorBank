@@ -1,0 +1,43 @@
+﻿<navigation:Page x:Class="DonorBank.Views.List.Report" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="783"
+           Title="Отчеты">
+    <Grid x:Name="LayoutRoot" Margin="0,0,0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="131*"/>
+            <RowDefinition Height="109*"/>
+        </Grid.RowDefinitions>
+        <toolkit:Chart Title="Отчет по отданным органам" x:Name="mcChart" Grid.Column="0" Margin="0,0,0,10">
+            <toolkit:LineSeries IndependentValueBinding="{Binding Path=Key}"
+                                DependentValueBinding="{Binding Path=Value}"
+                                Title="Нет данных" />
+            <toolkit:LineSeries IndependentValueBinding="{Binding Path=Key}"
+                                DependentValueBinding="{Binding Path=Value}"
+                                Title="Нет данных" />
+            <toolkit:LineSeries IndependentValueBinding="{Binding Path=Key}"
+                                DependentValueBinding="{Binding Path=Value}"
+                                Title="Нет данных" />
+            <toolkit:LineSeries IndependentValueBinding="{Binding Path=Key}"
+                                DependentValueBinding="{Binding Path=Value}"
+                                Title="Нет данных" />
+            <toolkit:LineSeries IndependentValueBinding="{Binding Path=Key}"
+                                DependentValueBinding="{Binding Path=Value}"
+                                Title="Нет данных" >
+
+            </toolkit:LineSeries>
+
+        </toolkit:Chart>
+
+        <toolkit:Chart Title="Органы в наличии" x:Name="mcChart1" Margin="10,10,0,10" Grid.Row="1" HorizontalAlignment="Center" Width="439">
+            <toolkit:PieSeries IndependentValueBinding="{Binding Path=Key}"
+                                DependentValueBinding="{Binding Path=Value}"
+                                Title="Нет данных" />
+        </toolkit:Chart>
+    </Grid>
+</navigation:Page>

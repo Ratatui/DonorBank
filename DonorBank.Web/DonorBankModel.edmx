@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DonorBankDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DonorBankDatabaseModelStoreContainer">
+          <EntitySet Name="Blood" EntityType="DonorBankDatabaseModel.Store.Blood" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Clinic" EntityType="DonorBankDatabaseModel.Store.Clinic" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Donor" EntityType="DonorBankDatabaseModel.Store.Donor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RespondBlood" EntityType="DonorBankDatabaseModel.Store.RespondBlood" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RespondTransplantant" EntityType="DonorBankDatabaseModel.Store.RespondTransplantant" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TransactionInfo" EntityType="DonorBankDatabaseModel.Store.TransactionInfo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transplantant" EntityType="DonorBankDatabaseModel.Store.Transplantant" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Blood__IdDonor__76969D2E" Association="DonorBankDatabaseModel.Store.FK__Blood__IdDonor__76969D2E">
+            <End Role="Donor" EntitySet="Donor" />
+            <End Role="Blood" EntitySet="Blood" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RespondBl__IdCli__7C4F7684" Association="DonorBankDatabaseModel.Store.FK__RespondBl__IdCli__7C4F7684">
+            <End Role="Clinic" EntitySet="Clinic" />
+            <End Role="RespondBlood" EntitySet="RespondBlood" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RespondTr__IdCli__7F2BE32F" Association="DonorBankDatabaseModel.Store.FK__RespondTr__IdCli__7F2BE32F">
+            <End Role="Clinic" EntitySet="Clinic" />
+            <End Role="RespondTransplantant" EntitySet="RespondTransplantant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transplan__IdDon__797309D9" Association="DonorBankDatabaseModel.Store.FK__Transplan__IdDon__797309D9">
+            <End Role="Donor" EntitySet="Donor" />
+            <End Role="Transplantant" EntitySet="Transplantant" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Blood">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdDonor" Type="int" Nullable="false" />
+          <Property Name="StorageTime" Type="datetime" Nullable="false" />
+          <Property Name="Purpose" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Clinic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Addres" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Director" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="11" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Donor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="Series" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Blood" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Addres" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="11" />
+          <Property Name="DeathTime" Type="datetime" />
+          <Property Name="BloodDonor" Type="int" />
+        </EntityType>
+        <EntityType Name="RespondBlood">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdClinic" Type="int" Nullable="false" />
+          <Property Name="Blood" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Purpose" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TimeCreate" Type="datetime" Nullable="false" />
+          <Property Name="WaitTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" Nullable="false" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="RespondTransplantant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdClinic" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Factor1" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor2" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor3" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor4" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor5" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor6" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="WaitTime" Type="datetime" Nullable="false" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" Nullable="false" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="TransactionInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TimeDate" Type="datetime" Nullable="false" />
+          <Property Name="User" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="About" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transplantant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IdDonor" Type="int" Nullable="false" />
+          <Property Name="Factor1" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor2" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor3" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor4" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor5" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Factor6" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="StorageTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Blood__IdDonor__76969D2E">
+          <End Role="Donor" Type="DonorBankDatabaseModel.Store.Donor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Blood" Type="DonorBankDatabaseModel.Store.Blood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blood">
+              <PropertyRef Name="IdDonor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RespondBl__IdCli__7C4F7684">
+          <End Role="Clinic" Type="DonorBankDatabaseModel.Store.Clinic" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RespondBlood" Type="DonorBankDatabaseModel.Store.RespondBlood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespondBlood">
+              <PropertyRef Name="IdClinic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RespondTr__IdCli__7F2BE32F">
+          <End Role="Clinic" Type="DonorBankDatabaseModel.Store.Clinic" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RespondTransplantant" Type="DonorBankDatabaseModel.Store.RespondTransplantant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespondTransplantant">
+              <PropertyRef Name="IdClinic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transplan__IdDon__797309D9">
+          <End Role="Donor" Type="DonorBankDatabaseModel.Store.Donor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Transplantant" Type="DonorBankDatabaseModel.Store.Transplantant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transplantant">
+              <PropertyRef Name="IdDonor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DonorBankDatabaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DonorBankDatabaseEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Blood" EntityType="DonorBankDatabaseModel.Blood" />
+          <EntitySet Name="Clinic" EntityType="DonorBankDatabaseModel.Clinic" />
+          <EntitySet Name="Donor" EntityType="DonorBankDatabaseModel.Donor" />
+          <EntitySet Name="RespondBlood" EntityType="DonorBankDatabaseModel.RespondBlood" />
+          <EntitySet Name="RespondTransplantant" EntityType="DonorBankDatabaseModel.RespondTransplantant" />
+          <EntitySet Name="TransactionInfo" EntityType="DonorBankDatabaseModel.TransactionInfo" />
+          <EntitySet Name="Transplantant" EntityType="DonorBankDatabaseModel.Transplantant" />
+          <AssociationSet Name="FK__Blood__IdDonor__76969D2E" Association="DonorBankDatabaseModel.FK__Blood__IdDonor__76969D2E">
+            <End Role="Donor" EntitySet="Donor" />
+            <End Role="Blood" EntitySet="Blood" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RespondBl__IdCli__7C4F7684" Association="DonorBankDatabaseModel.FK__RespondBl__IdCli__7C4F7684">
+            <End Role="Clinic" EntitySet="Clinic" />
+            <End Role="RespondBlood" EntitySet="RespondBlood" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RespondTr__IdCli__7F2BE32F" Association="DonorBankDatabaseModel.FK__RespondTr__IdCli__7F2BE32F">
+            <End Role="Clinic" EntitySet="Clinic" />
+            <End Role="RespondTransplantant" EntitySet="RespondTransplantant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transplan__IdDon__797309D9" Association="DonorBankDatabaseModel.FK__Transplan__IdDon__797309D9">
+            <End Role="Donor" EntitySet="Donor" />
+            <End Role="Transplantant" EntitySet="Transplantant" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Blood">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDonor" Type="Int32" Nullable="false" />
+          <Property Name="StorageTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Purpose" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Donor" Relationship="DonorBankDatabaseModel.FK__Blood__IdDonor__76969D2E" FromRole="Blood" ToRole="Donor" />
+        </EntityType>
+        <EntityType Name="Clinic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Addres" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Director" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" Unicode="false" FixedLength="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="RespondBlood" Relationship="DonorBankDatabaseModel.FK__RespondBl__IdCli__7C4F7684" FromRole="Clinic" ToRole="RespondBlood" />
+          <NavigationProperty Name="RespondTransplantant" Relationship="DonorBankDatabaseModel.FK__RespondTr__IdCli__7F2BE32F" FromRole="Clinic" ToRole="RespondTransplantant" />
+        </EntityType>
+        <EntityType Name="Donor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Series" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Blood" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Addres" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" Unicode="false" FixedLength="false" />
+          <Property Name="DeathTime" Type="DateTime" Precision="3" />
+          <Property Name="BloodDonor" Type="Int32" />
+          <NavigationProperty Name="Blood1" Relationship="DonorBankDatabaseModel.FK__Blood__IdDonor__76969D2E" FromRole="Donor" ToRole="Blood" />
+          <NavigationProperty Name="Transplantant" Relationship="DonorBankDatabaseModel.FK__Transplan__IdDon__797309D9" FromRole="Donor" ToRole="Transplantant" />
+        </EntityType>
+        <EntityType Name="RespondBlood">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClinic" Type="Int32" Nullable="false" />
+          <Property Name="Blood" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Purpose" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TimeCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WaitTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Clinic" Relationship="DonorBankDatabaseModel.FK__RespondBl__IdCli__7C4F7684" FromRole="RespondBlood" ToRole="Clinic" />
+        </EntityType>
+        <EntityType Name="RespondTransplantant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClinic" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Factor1" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor2" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor3" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor4" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor5" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor6" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WaitTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Clinic" Relationship="DonorBankDatabaseModel.FK__RespondTr__IdCli__7F2BE32F" FromRole="RespondTransplantant" ToRole="Clinic" />
+        </EntityType>
+        <EntityType Name="TransactionInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="User" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="About" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transplantant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IdDonor" Type="Int32" Nullable="false" />
+          <Property Name="Factor1" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor2" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor3" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor4" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor5" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Factor6" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="StorageTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Donor" Relationship="DonorBankDatabaseModel.FK__Transplan__IdDon__797309D9" FromRole="Transplantant" ToRole="Donor" />
+        </EntityType>
+        <Association Name="FK__Blood__IdDonor__76969D2E">
+          <End Role="Donor" Type="DonorBankDatabaseModel.Donor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Blood" Type="DonorBankDatabaseModel.Blood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blood">
+              <PropertyRef Name="IdDonor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RespondBl__IdCli__7C4F7684">
+          <End Role="Clinic" Type="DonorBankDatabaseModel.Clinic" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RespondBlood" Type="DonorBankDatabaseModel.RespondBlood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespondBlood">
+              <PropertyRef Name="IdClinic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RespondTr__IdCli__7F2BE32F">
+          <End Role="Clinic" Type="DonorBankDatabaseModel.Clinic" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RespondTransplantant" Type="DonorBankDatabaseModel.RespondTransplantant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RespondTransplantant">
+              <PropertyRef Name="IdClinic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transplan__IdDon__797309D9">
+          <End Role="Donor" Type="DonorBankDatabaseModel.Donor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Transplantant" Type="DonorBankDatabaseModel.Transplantant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Donor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transplantant">
+              <PropertyRef Name="IdDonor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DonorBankDatabaseModelStoreContainer" CdmEntityContainer="DonorBankDatabaseEntities">
+          <EntitySetMapping Name="Blood">
+            <EntityTypeMapping TypeName="DonorBankDatabaseModel.Blood">
+              <MappingFragment StoreEntitySet="Blood">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdDonor" ColumnName="IdDonor" />
+                <ScalarProperty Name="StorageTime" ColumnName="StorageTime" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clinic">
+            <EntityTypeMapping TypeName="DonorBankDatabaseModel.Clinic">
+              <MappingFragment StoreEntitySet="Clinic">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Addres" ColumnName="Addres" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Donor">
+            <EntityTypeMapping TypeName="DonorBankDatabaseModel.Donor">
+              <MappingFragment StoreEntitySet="Donor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Blood" ColumnName="Blood" />
+                <ScalarProperty Name="Addres" ColumnName="Addres" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DeathTime" ColumnName="DeathTime" />
+                <ScalarProperty Name="BloodDonor" ColumnName="BloodDonor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RespondBlood">
+            <EntityTypeMapping TypeName="DonorBankDatabaseModel.RespondBlood">
+              <MappingFragment StoreEntitySet="RespondBlood">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdClinic" ColumnName="IdClinic" />
+                <ScalarProperty Name="Blood" ColumnName="Blood" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="TimeCreate" ColumnName="TimeCreate" />
+                <ScalarProperty Name="WaitTime" ColumnName="WaitTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RespondTransplantant">
+            <EntityTypeMapping TypeName="DonorBankDatabaseModel.RespondTransplantant">
+              <MappingFragment StoreEntitySet="RespondTransplantant">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdClinic" ColumnName="IdClinic" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Factor1" ColumnName="Factor1" />
+                <ScalarProperty Name="Factor2" ColumnName="Factor2" />
+                <ScalarProperty Name="Factor3" ColumnName="Factor3" />
+                <ScalarProperty Name="Factor4" ColumnName="Factor4" />
+                <ScalarProperty Name="Factor5" ColumnName="Factor5" />
+                <ScalarProperty Name="Factor6" ColumnName="Factor6" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="WaitTime" ColumnName="WaitTime" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionInfo">
+            <EntityTypeMapping TypeName="DonorBankDatabaseModel.TransactionInfo">
+              <MappingFragment StoreEntitySet="TransactionInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TimeDate" ColumnName="TimeDate" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="About" ColumnName="About" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transplantant">
+            <EntityTypeMapping TypeName="DonorBankDatabaseModel.Transplantant">
+              <MappingFragment StoreEntitySet="Transplantant">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IdDonor" ColumnName="IdDonor" />
+                <ScalarProperty Name="Factor1" ColumnName="Factor1" />
+                <ScalarProperty Name="Factor2" ColumnName="Factor2" />
+                <ScalarProperty Name="Factor3" ColumnName="Factor3" />
+                <ScalarProperty Name="Factor4" ColumnName="Factor4" />
+                <ScalarProperty Name="Factor5" ColumnName="Factor5" />
+                <ScalarProperty Name="Factor6" ColumnName="Factor6" />
+                <ScalarProperty Name="StorageTime" ColumnName="StorageTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

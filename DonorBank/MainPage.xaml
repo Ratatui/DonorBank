@@ -1,0 +1,93 @@
+﻿<UserControl 
+  x:Class="DonorBank.MainPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+  xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
+  xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
+  xmlns:login="clr-namespace:DonorBank.LoginUI"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+
+        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+            <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
+                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
+                <navigation:Frame.UriMapper>
+                    <uriMapper:UriMapper>
+                        <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
+                        <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
+                    </uriMapper:UriMapper>
+                </navigation:Frame.UriMapper>
+            </navigation:Frame>
+        </Border>
+
+        <Grid Style="{StaticResource NavigationOuterGridStyle}">
+            <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
+
+                <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}">
+                    <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
+
+                        <ContentControl Style="{StaticResource LogoIcon}"/>
+                        <TextBlock x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" 
+                               Text="{Binding Strings.ApplicationName, Source={StaticResource ApplicationResources}}"/>
+
+                    </StackPanel>
+                </Border>
+
+                <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
+                    <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+
+                        <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/Home" TargetName="ContentFrame" Content="{Binding Path=Strings.HomePageTitle, Source={StaticResource ApplicationResources}}"/>
+
+                        <Rectangle x:Name="DividerClinic" Style="{StaticResource DividerStyle}" Visibility="Collapsed"/>
+
+                        <HyperlinkButton x:Name="LinkClinic" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/List/Clinic" TargetName="ContentFrame" Content="{Binding Path=Strings.ClinicListPageTitle, Source={StaticResource ApplicationResources}}" Visibility="Collapsed"/>
+                        <Rectangle x:Name="DividerDonor" Style="{StaticResource DividerStyle}" Visibility="Collapsed"/>
+
+                        <HyperlinkButton x:Name="LinkDonor" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/List/Donor" TargetName="ContentFrame" Content="{Binding Path=Strings.DonorListPageTitle, Source={StaticResource ApplicationResources}}" Visibility="Collapsed"/>
+                        <Rectangle x:Name="DividerTransplantant" Style="{StaticResource DividerStyle}" Visibility="Collapsed"/>
+
+                        <HyperlinkButton x:Name="LinkTransplantant" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/List/Transplantant" TargetName="ContentFrame" Content="{Binding Path=Strings.TransplantantListPageTitle, Source={StaticResource ApplicationResources}}" Visibility="Collapsed"/>
+                        <Rectangle x:Name="DividerBlood" Style="{StaticResource DividerStyle}" Visibility="Collapsed"/>
+
+                        <HyperlinkButton x:Name="LinkBlood" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/List/Blood" TargetName="ContentFrame" Content="{Binding Path=Strings.BloodListPageTitle, Source={StaticResource ApplicationResources}}" Visibility="Collapsed"/>
+
+                        <Rectangle x:Name="DividerLogs" Style="{StaticResource DividerStyle}" Visibility="Collapsed"/>
+
+                        <HyperlinkButton x:Name="LinkLogs" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/List/Logs" TargetName="ContentFrame" Content="{Binding Path=Strings.LogsListPageTitle, Source={StaticResource ApplicationResources}}" Visibility="Collapsed"/>
+
+                        <Rectangle x:Name="DividerReport" Style="{StaticResource DividerStyle}" Visibility="Collapsed"/>
+
+                        <HyperlinkButton x:Name="LinkReport" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/Report" TargetName="ContentFrame" Content="{Binding Path=Strings.ReportPageTitle, Source={StaticResource ApplicationResources}}" Visibility="Collapsed"/>
+
+                        <Rectangle x:Name="DividerRespondBlood" Style="{StaticResource DividerStyle}" Visibility="Collapsed"/>
+
+                        <HyperlinkButton x:Name="LinkRespondBlood" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/List/RespondBlood" TargetName="ContentFrame" Content="{Binding Path=Strings.RespondBloodPageTitle, Source={StaticResource ApplicationResources}}" Visibility="Collapsed"/>
+                        
+                        <Rectangle x:Name="DividerRespondTransplantant" Style="{StaticResource DividerStyle}" Visibility="Collapsed"/>
+
+                        <HyperlinkButton x:Name="LinkRespondTransplantant" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/List/RespondTransplantant" TargetName="ContentFrame" Content="{Binding Path=Strings.RespondTransplantantPageTitle, Source={StaticResource ApplicationResources}}" Visibility="Collapsed"/>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+
+            <Border Style="{StaticResource LoginContainerStyle}">
+                <login:LoginStatus/>
+            </Border>
+        </Grid>
+
+    </Grid>
+
+</UserControl>

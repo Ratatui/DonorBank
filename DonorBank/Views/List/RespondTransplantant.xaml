@@ -1,0 +1,66 @@
+﻿<navigation:Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
+           xmlns:riaControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices" xmlns:Web="clr-namespace:DonorBank.Web" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="DonorBank.Views.List.RespondTransplantantList"
+           mc:Ignorable="d"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Запросы органов">
+    <Grid x:Name="LayoutRoot">
+
+        <riaControls:DomainDataSource x:Name="respondTransplantantDomainDataSource" AutoLoad="True" Height="0" LoadedData="respondTransplantantDomainDataSource_LoadedData_1" QueryName="GetRespondTransplantantQuery" Width="0" d:DesignData="{d:DesignInstance Web:RespondTransplantant, CreateList=true}">
+            <riaControls:DomainDataSource.DomainContext>
+                <Web:DonorBankDomainContext/>
+            </riaControls:DomainDataSource.DomainContext>
+        </riaControls:DomainDataSource>
+        <toolkit:BusyIndicator x:Name="BusyIndicatorLoadData"
+	        IsBusy="{Binding IsLoadingData, ElementName= respondTransplantantDomainDataSource}" BusyContent = "Загрузка данных...">
+            <sdk:DataGrid x:Name="respondTransplantantDataGrid" AutoGenerateColumns="False" ItemsSource="{Binding Data, ElementName=respondTransplantantDomainDataSource}" Margin="10,40,10,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn x:Name="createTimeColumn" Header="Время создания" Width="SizeToHeader">
+                        <sdk:DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <sdk:DatePicker SelectedDate="{Binding CreateTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellEditingTemplate>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CreateTime, StringFormat=\{0:d\}}"/>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTextColumn x:Name="factor1Column" Binding="{Binding Factor1}" Header="Фактор 1" Width="SizeToHeader"/>
+                    <sdk:DataGridTextColumn x:Name="factor2Column" Binding="{Binding Factor2}" Header="Фактор 2" Width="SizeToHeader"/>
+                    <sdk:DataGridTextColumn x:Name="factor3Column" Binding="{Binding Factor3}" Header="Фактор 3" Width="SizeToHeader"/>
+                    <sdk:DataGridTextColumn x:Name="factor4Column" Binding="{Binding Factor4}" Header="Фактор 4" Width="SizeToHeader"/>
+                    <sdk:DataGridTextColumn x:Name="factor5Column" Binding="{Binding Factor5}" Header="Фактор 5" Width="SizeToHeader"/>
+                    <sdk:DataGridTextColumn x:Name="factor6Column" Binding="{Binding Factor6}" Header="Фактор 6" Width="SizeToHeader"/>
+                    <sdk:DataGridTextColumn x:Name="priorityColumn" Binding="{Binding Priority}" Header="Приоритет" Width="SizeToHeader"/>
+                    <sdk:DataGridTextColumn x:Name="statusColumn" Binding="{Binding Status}" Header="Статус" Width="SizeToHeader"/>
+                    <sdk:DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type}" Header="Тип" Width="SizeToHeader"/>
+                    <sdk:DataGridTemplateColumn x:Name="waitTimeColumn" Header="Время ожидания" Width="SizeToHeader">
+                        <sdk:DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <sdk:DatePicker SelectedDate="{Binding WaitTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellEditingTemplate>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding WaitTime, StringFormat=\{0:d\}}"/>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+        </toolkit:BusyIndicator>
+        <StackPanel HorizontalAlignment="Left" Height="17" Margin="10,10,0,0" VerticalAlignment="Top" Width="620" Orientation="Horizontal">
+            <HyperlinkButton Content="Добавить" x:Name="AddButton" Click="AddButton_Click_1"/>
+            <HyperlinkButton Content="Отменить" x:Name="CancelButton" Click="CancelButton_Click_1"/>
+            <HyperlinkButton Content="Удовлетворить" x:Name="ConfirmButton" Click="ConfirmButton_Click_1"/>
+            <HyperlinkButton Content="Отказать" x:Name="RejectButton" Click="RejectButton_Click_1"/>
+        </StackPanel>
+    </Grid>
+</navigation:Page>

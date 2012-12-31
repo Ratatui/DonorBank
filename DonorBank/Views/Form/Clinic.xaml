@@ -1,0 +1,44 @@
+﻿<sdk:ChildWindow
+           xmlns:local="clr-namespace:DonorBank.Web"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           xmlns:riaControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+           xmlns:Web="clr-namespace:DonorBank.Web" 
+           xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
+           mc:Ignorable="d" 
+           x:Class="DonorBank.Views.ClinicForm"
+           Width="400" Height="300" 
+           Title="ClinicForm">
+
+    <Grid x:Name="LayoutRoot" Margin="2">
+        <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,231,0,7" />
+        <Button x:Name="OKButton" Content="ОК" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,231,80,7" />
+       
+        <Grid x:Name="grid1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="226" Width="378">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <sdk:Label Content="Название:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,7,0,6" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="titleTextBox" Text="{Binding Title, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,3,-168,3" Grid.Row="0" VerticalAlignment="Center" Width="291"/>
+            <sdk:Label Content="Главврач:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,7,0,6" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="directorTextBox" Text="{Binding Director, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,3,-168,3" Grid.Row="1" VerticalAlignment="Center" Width="291"/>
+            <sdk:Label Content="Телефон:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,6" Grid.Row="2" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="phoneTextBox" Text="{Binding Phone, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,3,-168,3" Grid.Row="2" VerticalAlignment="Center" Width="291"/>
+            <sdk:Label Content="Пользователь:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,7,0,3" Grid.Row="3" VerticalAlignment="Center" RenderTransformOrigin="0.488,0.5"/>
+            <TextBox x:Name="usernameTextBox" Text="{Binding Username, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,3,-168,0" Grid.Row="3" VerticalAlignment="Center" Width="291"/>
+            <sdk:Label Content="Адрес:" Grid.Column="0" HorizontalAlignment="Left" Margin="0,35,0,-25" Grid.Row="3" VerticalAlignment="Center" RenderTransformOrigin="0.538,-1"/>
+            <TextBox x:Name="addresTextBox" Text="{Binding Addres, Mode=TwoWay}"  HorizontalAlignment="Left" Height="108" Margin="3,31,-168,-113" Grid.Row="3" VerticalAlignment="Center" Width="291" Grid.Column="1" RenderTransformOrigin="0.482,1.037"/>
+        </Grid> 
+    </Grid>
+</sdk:ChildWindow>

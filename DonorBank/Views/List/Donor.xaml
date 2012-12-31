@@ -1,0 +1,31 @@
+﻿<navigation:Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:riaControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices" xmlns:Web="clr-namespace:DonorBank.Web" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="DonorBank.Views.DonorList"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+           mc:Ignorable="d" d:DesignHeight="480"
+           Title="Доноры">
+    <Grid x:Name="LayoutRoot" >
+
+        <riaControls:DomainDataSource x:Name="donorDomainDataSource" AutoLoad="True" Height="0" SubmittedChanges="donorDomainDataSource_SubmittedChanges" LoadedData="donorDomainDataSource_LoadedData" QueryName="GetDonorQuery" Width="0" d:DesignData="{d:DesignInstance Web:Donor, CreateList=true}">
+            <riaControls:DomainDataSource.DomainContext>
+                <Web:DonorBankDomainContext/>
+            </riaControls:DomainDataSource.DomainContext>
+        </riaControls:DomainDataSource>
+
+        <toolkit:BusyIndicator x:Name="BusyIndicatorLoadData"
+	        IsBusy="{Binding IsLoadingData, ElementName= donorDomainDataSource}" BusyContent = "Загрузка данных..." Margin="10,32,10,0">
+            <sdk:DataGrid x:Name="Donor_List" ItemsSource="{Binding DataView, ElementName=donorDomainDataSource}" Margin="0,0,0,10"/>
+        </toolkit:BusyIndicator>
+
+        <StackPanel HorizontalAlignment="Left" Height="17" Margin="10,10,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+            <HyperlinkButton Content="Добавить" Click="HyperlinkButton_AddDonor"/>
+            <HyperlinkButton Content="Редактировать" Click="HyperlinkButton_EditDonor"/>
+            <HyperlinkButton Content="Удалить" Click="HyperlinkButton_DeleteDonor"/>
+        </StackPanel>
+        
+    </Grid>
+</navigation:Page>

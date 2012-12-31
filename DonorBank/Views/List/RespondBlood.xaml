@@ -1,0 +1,30 @@
+﻿<navigation:Page 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" 
+           xmlns:riaControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices" xmlns:Web="clr-namespace:DonorBank.Web" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" x:Class="DonorBank.Views.List.RespondBloodList"
+           mc:Ignorable="d" 
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Запросы крови">
+    <Grid x:Name="LayoutRoot">
+
+        <StackPanel HorizontalAlignment="Left" Height="17" Margin="10,10,0,0" VerticalAlignment="Top" Width="620" Orientation="Horizontal">
+            <HyperlinkButton Content="Добавить" x:Name="AddButton" Click="AddButton_Click_1"/>
+            <HyperlinkButton Content="Отменить" x:Name="CancelButton" Click="CancelButton_Click_1"/>
+            <HyperlinkButton Content="Удовлетворить" x:Name="ConfirmButton" Click="ConfirmButton_Click_1"/>
+            <HyperlinkButton Content="Отказать" x:Name="RejectButton" Click="RejectButton_Click_1"/>
+        </StackPanel>
+        <riaControls:DomainDataSource x:Name="respondBloodDomainDataSource" AutoLoad="True" Height="0" LoadedData="respondBloodDomainDataSource_LoadedData_2" QueryName="GetRespondBloodQuery" Width="0" d:DesignData="{d:DesignInstance Web:RespondBlood, CreateList=true}">
+            <riaControls:DomainDataSource.DomainContext>
+                <Web:DonorBankDomainContext/>
+            </riaControls:DomainDataSource.DomainContext>
+        </riaControls:DomainDataSource>
+        <toolkit:BusyIndicator x:Name="BusyIndicatorLoadData"
+	        IsBusy="{Binding IsLoadingData, ElementName= respondBloodDomainDataSource}" BusyContent = "Загрузка данных...">
+            <sdk:DataGrid x:Name="respondBloodDataGrid" Margin="10,31,10,10" ItemsSource="{Binding Data, ElementName=respondBloodDomainDataSource}"/>
+        </toolkit:BusyIndicator>
+    </Grid>
+</navigation:Page>
